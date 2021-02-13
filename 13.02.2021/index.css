@@ -1,0 +1,61 @@
+.like-button {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    background-image: url('./Vector.svg');
+    background-size: 22px 19px;
+    width: 22px;
+    height: 19px;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    transition: .2s ease all;
+}
+
+.like-button_liked, .like-button:active {
+    background-image: url(./Union.svg);
+}
+
+.like-button:hover {
+    background-image: url('./hover.svg');
+}
+
+.like-button__input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.card {
+    max-width: 282px;
+    position: relative;
+}
+
+.card img {
+    max-width: 100%;
+}
+
+body {
+    display: flex;
+}
+
+.delete-button {
+    background-image: url('./Trash.svg');
+    width: 18px;
+    height: 19.3px;
+    background-size: 18px 19.3px;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
