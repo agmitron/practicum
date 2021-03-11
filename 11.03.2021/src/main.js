@@ -4,7 +4,4 @@ import Dropdown from './common.blocks/dropdown/dropdown.js'
 
 const mainDropdown = new Dropdown('.main__dropdown')
 
-// mainDropdown.open()
-// mainDropdown.close()
-// mainDropdown.toggle()
-mainDropdown.select()
+const myDropdown = new Dropdown('.mydropdown', { selectors: { stylesClasses: { dropdown_closed: 'mydropdown_closed' } } })

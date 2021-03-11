@@ -14,9 +14,16 @@ const defaultConfig = {
 
 export default class Dropdown {
     constructor(selector = '.dropdown', config = defaultConfig) {
-        this.config = config
+        this.config = {
+            ...defaultConfig,
+            selectors: {
+                ...defaultConfig.selectors,
+                ...config.selectors
+            }
+        }
 
         this.$dropdown = document.querySelector(selector)
+
 
         this.options = [...this.$dropdown.querySelectorAll(this.config.selectors.data.option)]
             .map($el => {
@@ -36,7 +43,7 @@ export default class Dropdown {
 
         this.$placeholder = this.$dropdown.querySelector(this.config.selectors.data.placeholder)
 
-        this.setEventListeners()
+        this.#setEventListeners()
     }
 
     open() {
@@ -57,7 +64,7 @@ export default class Dropdown {
         this.$placeholder.textContent = $option.textContent
     }
 
-    setEventListeners() {
+    #setEventListeners() {
         this.$dropdown.addEventListener('click', e => {
             const isPlaceholder = e.target.matches(this.config.selectors.data.placeholder)
             const isOption = e.target.matches(this.config.selectors.data.option)

@@ -62,6 +62,5 @@
 }
 
 .dropdown__option:hover {
-    opacity: .7;
     background-color: lightblue;
 }

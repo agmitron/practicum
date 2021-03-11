@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
     <title>Dropdown example</title>
     <link rel="stylesheet" href="./src/common.blocks/dropdown/dropdown.css">
 </head>
+
 <body class="main">
-    <div class="dropdown main__dropdown">
+    <div class="dropdown dropdown_closed main__dropdown">
         <span class="dropdown__placeholder">Выберите пункт</span>
         <div class="dropdown__menu">
             <div class="dropdown__option" data-option-id="0">Один</div>
@@ -17,6 +19,19 @@
         </div>
     </div>
 
+    <div class="mydropdown mydropdown_closed">
+            <span class="dropdown__placeholder">Выберите пункт</span>
+            <div class="dropdown__menu">
+                <div class="dropdown__option" data-option-id="0">Один</div>
+                <div class="dropdown__option" data-option-id="1">Два</div>
+                <div class="dropdown__option" data-option-id="2">Три</div>
+            </div>
+    </div>
+
+    <button id="open">open</button>
+    <button id="close" style="margin-top: 200px;">close</button>
+
     <script src="./src/main.js" type="module"></script>
 </body>
+
 </html>
