@@ -56,4 +56,12 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 12px;
+    cursor: pointer;
+    background-color: white;
+    transition: .3s ease;
+}
+
+.dropdown__option:hover {
+    opacity: .7;
+    background-color: lightblue;
 }
