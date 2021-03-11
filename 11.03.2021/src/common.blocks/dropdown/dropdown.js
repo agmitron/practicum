@@ -14,26 +14,29 @@ const defaultConfig = {
 
 export default class Dropdown {
     constructor(selector = '.dropdown', config = defaultConfig) {
+        this.config = config
+
         this.$dropdown = document.querySelector(selector)
 
-        this.options = [...this.$dropdown.querySelectorAll(config.selectors.option)]
+        this.options = [...this.$dropdown.querySelectorAll(this.config.selectors.data.option)]
             .map($el => {
                 const camelCasedOptionId = dataAttributeSnakeCaseToCamelCase(
-                    config.selectors.optionId
+                    this.config.selectors.data.optionId
                 )
-                
+
                 const id = $el
                     .dataset[camelCasedOptionId]
-                
+
                 return {
                     $el,
                     id
                 }
             })
 
-        this.$placeholder = this.$dropdown.querySelector(config.selectors.data.placeholder)
-        
-        this.config = config
+
+        this.$placeholder = this.$dropdown.querySelector(this.config.selectors.data.placeholder)
+
+        this.setEventListeners()
     }
 
     open() {
@@ -49,8 +52,30 @@ export default class Dropdown {
     }
 
     select(optionId) {
-        if (!optionId) return 
-        this.$placeholder.textContent = this.options.find(opt => opt.id === optionId).$el.textContent
+        if (!optionId) return
+        const $option = this.options.find(opt => opt.id === optionId).$el
+        this.$placeholder.textContent = $option.textContent
+    }
+
+    setEventListeners() {
+        this.$dropdown.addEventListener('click', e => {
+            const isPlaceholder = e.target.matches(this.config.selectors.data.placeholder)
+            const isOption = e.target.matches(this.config.selectors.data.option)
+
+            if (isPlaceholder) {
+                this.toggle()
+            }
+
+            if (isOption) {
+                const camelCasedOptionId = dataAttributeSnakeCaseToCamelCase(
+                    this.config.selectors.data.optionId
+                )
+                const optionId = e.target.dataset[camelCasedOptionId]
+                
+                this.select(optionId)
+                this.close()
+            }
+        })
     }
 }
 
