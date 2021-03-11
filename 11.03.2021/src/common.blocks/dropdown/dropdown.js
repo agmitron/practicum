@@ -1,3 +1,7 @@
+import { dataAttributeSnakeCaseToCamelCase } from '../utils.js'
+import DropdownOption from './__option/dropdown__option.js';
+import DropdownOptionCounter from '../dropdown/__option/_counter/dropdown__option_counter.js'
+
 const defaultConfig = {
     selectors: {
         data: {
@@ -10,6 +14,7 @@ const defaultConfig = {
             dropdown_closed: 'dropdown_closed',
         }
     },
+
 }
 
 export default class Dropdown {
@@ -19,31 +24,23 @@ export default class Dropdown {
             selectors: {
                 ...defaultConfig.selectors,
                 ...config.selectors
-            }
+            },
+            ...config
         }
 
         this.$dropdown = document.querySelector(selector)
 
+        console.log(this.config)
 
+        const [Option = DropdownOption, optionProps = {}] = this.config?.dependencies?.option ?? []
+        
         this.options = [...this.$dropdown.querySelectorAll(this.config.selectors.data.option)]
-            .map($el => {
-                const camelCasedOptionId = dataAttributeSnakeCaseToCamelCase(
-                    this.config.selectors.data.optionId
-                )
-
-                const id = $el
-                    .dataset[camelCasedOptionId]
-
-                return {
-                    $el,
-                    id
-                }
-            })
+            .map($el => new Option($el, this.config.selectors.data.optionId, optionProps))
 
 
         this.$placeholder = this.$dropdown.querySelector(this.config.selectors.data.placeholder)
 
-        this.#setEventListeners()
+        this._setEventListeners()
     }
 
     open() {
@@ -64,7 +61,7 @@ export default class Dropdown {
         this.$placeholder.textContent = $option.textContent
     }
 
-    #setEventListeners() {
+    _setEventListeners() {
         this.$dropdown.addEventListener('click', e => {
             const isPlaceholder = e.target.matches(this.config.selectors.data.placeholder)
             const isOption = e.target.matches(this.config.selectors.data.option)
@@ -86,15 +83,3 @@ export default class Dropdown {
     }
 }
 
-function dataAttributeSnakeCaseToCamelCase(snakeCaseString = '') {
-    return snakeCaseString
-        .replace('[', '')
-        .replace(']', '')
-        .split('-')
-        .filter(substring => substring !== 'data')
-        .map((substring, i) => {
-            if (i === 0) return substring
-            return substring[0].toUpperCase() + substring.slice(1)
-        })
-        .join('')
-}

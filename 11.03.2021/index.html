@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown example</title>
-    <link rel="stylesheet" href="./src/common.blocks/dropdown/dropdown.css">
+    <link rel="stylesheet" href="./src/main.css">
 </head>
 
 <body class="main">
@@ -19,13 +19,34 @@
         </div>
     </div>
 
-    <div class="mydropdown mydropdown_closed">
-            <span class="dropdown__placeholder">Выберите пункт</span>
-            <div class="dropdown__menu">
-                <div class="dropdown__option" data-option-id="0">Один</div>
-                <div class="dropdown__option" data-option-id="1">Два</div>
-                <div class="dropdown__option" data-option-id="2">Три</div>
+    <div class="dropdown dropdown_closed main__dropdown-with-counter">
+        <span class="dropdown__placeholder">Выберите пункт</span>
+        <div class="dropdown__menu">
+            <div class="dropdown__option dropdown__option_counter" data-option-id="0">
+                Один
+                <div class="option__counter">
+                    <button class="option__counter-action option__decrement">-</button>
+                    <span class="counter__placeholder">2</span>
+                    <button class="option__counter-action option__decrement">+</button>
+                </div>
             </div>
+            <div class="dropdown__option dropdown__option_counter" data-option-id="0">
+                Один
+                <div class="option__counter">
+                    <button class="option__counter-action option__decrement">-</button>
+                    <span class="counter__placeholder">0</span>
+                    <button class="option__counter-action option__decrement">+</button>
+                </div>
+            </div>
+            <div class="dropdown__option dropdown__option_counter" data-option-id="0">
+                Один
+                <div class="option__counter">
+                    <button class="option__counter-action option__decrement">-</button>
+                    <span class="counter__placeholder">3</span>
+                    <button class="option__counter-action option__decrement">+</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button id="open">open</button>
