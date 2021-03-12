@@ -2,6 +2,7 @@ export default class DropdownOption {
     constructor(value, id, templateSelector = '.dropdown__option-template') {
         this.templateSelector = templateSelector
         this.$el = this.getTemplate(value, id)
+        this.selected = false
     }
 
     getTemplate(value, id) {
@@ -10,11 +11,17 @@ export default class DropdownOption {
             .querySelector('.dropdown__option')
             .cloneNode(true)
         
-        console.log({$option})
-
-        $option.textContent = value 
+        $option.childNodes[0].textContent = value
         $option.setAttribute('data-option-id', id)
 
         return $option
+    }
+
+    select() {
+        this.selected = true
+    }
+
+    get value() {
+        return this.$el.textContent
     }
 }

@@ -11,3 +11,8 @@ const dropdown1 = new Dropdown('.main__dropdown2', {
     option: DropdownCounterOption,
     options: ['санки', 'ледянки', 'машина']
 })
+
+const dropdown2 = new Dropdown('.main__dropdown3', {
+    option: DropdownCounterOption,
+    options: ['санки1', 'ледянки1', 'машина1']
+})

@@ -6,14 +6,15 @@ const defaultConfig = {
 
 // [{$el: DOM, increment() {}, decrement() {}, counter}]
 
+// Dependendency Injection
+
 export default class Dropdown {
     constructor(selector, config = defaultConfig) {
         this._$el = document.querySelector(selector)
         this._options = config.options.map((opt, i) => new config.option(opt, i))
-        
+
         const $menu = this._$el.querySelector('.dropdown__menu')
 
-        console.log(this._options)
         this._options.forEach(opt => {
             $menu.append(opt.$el)
         })
@@ -40,10 +41,15 @@ export default class Dropdown {
     }
 
     select(optionId) {
-        const $option = this._options.find(opt => opt.$el.dataset.optionId === optionId).$el
-        this._$placeholder.textContent = $option.textContent
-        console.log({$option})
-        this.close()
+        const option = this._options.find(opt => opt.$el.dataset.optionId === optionId)
+
+        if (option) {
+            option.select()
+            this._$placeholder.textContent = this._options
+                .filter(opt => opt.selected === true)
+                .map(opt => opt.value)
+                .join(', ')
+        }
     }
 
     _setEventListeners() {
