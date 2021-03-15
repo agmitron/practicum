@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dropdown example</title>
-    <link rel="stylesheet" href="./src/common.blocks/dropdown/dropdown.css">
+    <title>Dropdown</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="main">
-    <div class="dropdown dropdown_closed main__dropdown">
-        <span class="dropdown__placeholder">Выберите пункт</span>
-        <div class="dropdown__menu">
-            <div class="dropdown__option" data-option-id="0">Один</div>
-            <div class="dropdown__option" data-option-id="1">Два</div>
-            <div class="dropdown__option" data-option-id="2">Три</div>
-        </div>
-    </div>
 
-    <script src="./src/common.blocks/dropdown/dropdown.js"></script>
+<body>
+    <main class="main">
+        <template class="dropdown__option-template">
+            <div class="dropdown__option" data-option-id="0">спальни</div>
+        </template>
+        <div class="dropdown dropdown_closed main__dropdown">
+            <div class="dropdown__placeholder">2 спальни, 2 кровати...</div>
+            <div class="dropdown__menu"></div>
+        </div>
+
+        <div class="dropdown dropdown_closed main__dropdown2">
+            <div class="dropdown__placeholder">2 спальни, 2 кровати...</div>
+            <div class="dropdown__menu">
+
+            </div>
+        </div>
+
+        <div class="dropdown dropdown_closed main__dropdown3">
+            <div class="dropdown__placeholder">2 спальни, 2 кровати...</div>
+            <div class="dropdown__menu">
+
+            </div>
+        </div>
+
+        <template class="dropdown__option-with-counter-template">
+            <div class="dropdown__option dropdown__option_with-counter" data-option-id="0">
+                спальни
+                <div class="dropdown__counter">
+                    <button class="dropdown-action counter__decrement">-</button>
+                    <span class="counter__placeholder">0</span>
+                    <button class="dropdown-action counter__increment">+</button>
+                </div>
+            </div>
+        </template>
+    </main>
+
+    <script src="./js/scripts.js" type="module"></script>
 </body>
+
 </html>

@@ -1,0 +1,71 @@
+.dropdown__placeholder {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border: 1px solid rgba(31, 32, 65, 0.5);
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown__placeholder::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 8px;
+    background-image: url('./assets/expand_more.svg');
+}
+
+.dropdown__option {
+    border: 1px solid rgba(31, 32, 65, 0.5);
+    border-top: 0;
+    padding: 12px 15px;
+    transition: .2s ease all;
+    cursor: pointer;
+}
+
+.dropdown__option:hover {
+    background-color: lightblue;
+}
+
+.dropdown__option:last-child {
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.dropdown_closed .dropdown__menu {
+    display: none;
+}
+
+.dropdown_closed .dropdown__placeholder::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-action {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(31, 32, 65, 0.25);
+    color: rgba(31, 32, 65, 0.25);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.dropdown__option_with-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown__counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown__counter .counter__placeholder {
+    margin-left: 5px;
+    margin-right: 5px;
+}
