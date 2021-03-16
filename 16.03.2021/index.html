@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card OOP</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <main>
+        <template class="card-template">
+            <li class="card">
+                <img class="card__image" src="#" alt="шаблон">
+                <div class="card__content">
+                    <h2 class="card__heading"></h2>
+                    <button type="button" class="button button_type_like" aria-label="Лайк">Лайк</button>
+                    <button type="button" class="button button_type_delete"
+                        aria-label="Удалить карточку">Удалить</button>
+                </div>
+            </li>
+        </template>
+
+        <div class="image-popup" hidden="true">
+            <img src="" alt="">
+            <h3></h3>
+        </div>
+    </main>
+    <script src="./Card.js"></script>
+</body>
+
+</html>

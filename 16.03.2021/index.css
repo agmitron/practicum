@@ -1,0 +1,15 @@
+.card__image {
+    max-width: 200px;
+}
+
+.button_type_like_active_true {
+    background-color: black;
+    color: white;
+}
+
+.image-popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
