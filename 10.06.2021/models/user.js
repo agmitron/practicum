@@ -1,41 +1,52 @@
 const mongoose = require('mongoose')
 
+/*
+    User {
+        name
+        gender
+        about
+        hobbies
+        age
+        car
+        pet
+    }
+*/
+
+const carSchema = new mongoose.Schema({
+    brand: String,
+    engine_capacity: Number,
+    model: String
+})
+
 const petSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 30,
+        required: true
     },
     age: Number
 })
+
+// Enumerate
 
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         minlength: 2, 
-        maxlength: 30
+        maxlength: 30,
     },
     gender: {
-        type: String, 
-        enum: ['м', 'ж', 'другой'] // гендер может содержать одно из трех значений
+        type: String,
+        enum: ['м', 'ж', 'другой'], 
     },
     about: String,
     hobbies: [{
-        type: String,
-        minlength: 2, 
-        maxlength: 30
+        type: String, 
+        minlength: 2,
+        maxlength: 30,
     }],
-    age: { // у пользователя есть возраст
-        type: Number, // возраст - число
-        validate: { // опишем свойство validate
-            validator(v) { // validator - функция проверки данных. v - значение свойства age
-                return v >= 18; // если возраст меньше 18, вернётся false
-            },
-            message: 'Вам должно быть больше 18 лет!', // когда validator вернёт false, будет использовано это сообщение
-        }
-    },
+    age: Number,
+    car: carSchema,
     pet: petSchema
 })
 
