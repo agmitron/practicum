@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <form>
+    <label>
+      <input required minlength="3" type="text" class="input" name="login" id="loginInput" placeholder="login">
+      <span class="input-error" id="loginInputError"></span>
+    </label>
+    <label>
+      <input required type="password" class="input" name="password" id="passwordInput" placeholder="password"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
+      <span class="input-error" id="passwordInputError"></span>
+    </label>
+    <button type="submit">SUBMIT</button>
+  </form>
+
+  <script src="./index.js"></script>
+</body>
+
+</html>
