@@ -1,0 +1,11 @@
+.create-todo {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 20px;
+    column-gap: 20px;
+}
+
+.create-todo__input {
+    display: flex;
+    width: 100%;
+}
