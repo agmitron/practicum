@@ -1,0 +1,10 @@
+.accordion__content {
+  padding: 10px;
+  transition: .2s ease all;
+}
+
+.accordion__content_hidden {
+  height: 0;
+  font-size: 0;
+  padding: 0;
+}

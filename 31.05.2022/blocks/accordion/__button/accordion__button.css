@@ -1,0 +1,14 @@
+.accordion__button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: .2s ease all;
+}
+
+.accordion__button:hover {
+  opacity: .6;
+}
+
+.accordion__button_rotated {
+  transform: rotate(180deg);
+}
