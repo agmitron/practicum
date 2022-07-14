@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        class Person {
+            constructor(x, y, power) {
+                this.x = x;
+                this.y = y;
+                this.power = power;
+            }
+
+            moveRight(step = 1) {
+                this.x = this.x + step;
+            }
+
+            moveLeft(step = 1) {
+                this.x = this.x - step;
+            }
+
+            jump() {
+                this.y = this.y + 2 * power;
+                this.moveRight();
+
+                setTimeout(() => {
+                    this.y = this.y - 2 * power;
+                }, 1000)
+            }
+        }
+
+        const kolya = new Person(2, 0, 1);
+        const mitya = new Person(4, 0, 3);
+
+        kolya.moveRight();
+        mitya.moveLeft();
+
+        function multiplyToTwo(a) {
+            const value = 2;
+
+            return function (c) {
+                return a * value;
+            }
+        }
+
+        function makeCounter() {
+            let count = 0;
+
+            return function () {
+                return count++; // есть доступ к внешней переменной "count"
+            };
+        }
+
+        const counter1 = makeCounter();
+        const counter2 = makeCounter();
+        const counter3 = makeCounter();
+        const counter4 = makeCounter();
+        const counter5 = makeCounter();
+    </script>
+</body>
+
+</html>
