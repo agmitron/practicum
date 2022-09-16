@@ -1,0 +1,10 @@
+$text-color: green;
+$background-color: green;
+$gradient-color: green;
+$font-size: 12px;
+$font-family: 'Roboto', sans-serif;
+$base-margin: 10px;
+$footer-margin: calc($base-margin + 25px);
+
+
+$gradients: ("main": linear-gradient(left, right, green, white), "secondary": linear-gradient(left, right, green, white))
