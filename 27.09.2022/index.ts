@@ -8,6 +8,8 @@ const john: TUser = {
   id: 3,
 };
 
+const x = JSON.parse('null')
+
 delete john.id;
 
 // console.log(john);
