@@ -1,0 +1,36 @@
+.card {
+  width: 200px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 15px;
+}
+.card--secondary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+}
+.card__title {
+  font-family: Arial;
+}
+.card__image {
+  max-width: 100%;
+}
+.card__button {
+  color: blue;
+  font-family: monospace;
+}
+
+.card--secondary .card__image {
+  background-image: url("https://i.ytimg.com/vi/jHWKtQHXVJg/maxresdefault.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50%;
+  height: 100px;
+}
+
+.text {
+  color: green;
+  background: linear-gradient(left, right, green, white);
+}/*# sourceMappingURL=index.css.map */

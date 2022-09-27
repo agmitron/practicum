@@ -1,0 +1,8 @@
+@import './variables/variables.scss';
+@import './mixins/background.scss';
+@import './blocks/card/card.scss';
+
+.text {
+    color: $text-color;
+    background: map-get($gradients, "main");
+}
