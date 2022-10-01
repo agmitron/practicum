@@ -1,137 +1,108 @@
 type TUser = {
-  name: string;
   id: number;
-};
+  name?: string;
+}
 
 const john: TUser = {
-  name: "John",
-  id: 3,
-};
+  id: 213,
+  name: 'John'
+}
 
-const x = JSON.parse('null')
-
-delete john.id;
-
-// console.log(john);
+delete john.name
 
 type TA = {
-  name: string;
-};
+  name: string
+}
 
 type TB = {
-  name: string | number;
-  id?: number;
-};
+  id?: number
+  name: string | number
+}
 
 const a: TA = {
-  name: "aaa",
-};
+  name: 'string'
+}
 
-const b: TB = a;
+const b: TB = a
 
-b.name = 33;
-b.id = 1;
-
-// console.log(a);
-
-/**
- * keyof
- */
+b.id = 12
+b.name = 'asdsad'
 
 type TRGB = {
   red: number;
   green: number;
   blue: number;
-};
+}
 
-type TChangeColorFn = (obj: TRGB, key: keyof TRGB, value: number) => void;
+const colorA: TRGB = {
+  red: 120,
+  green: 210,
+  blue: 15
+}
 
-const pink: TRGB = {
-  red: 200,
-  green: 100,
-  blue: 50,
-};
+type TColor = keyof TRGB
 
-const changeColorFn: TChangeColorFn = (obj, key, value) => {
-  obj[key] = value;
-};
+function changeColor(obj: TRGB, key: TColor, value: number) {
+  obj[key] = value
+}
 
-changeColorFn(pink, "green", 180);
-
-console.log(pink);
+changeColor(colorA, 'blue', 220)
 
 type TRGBExtends = {
-  -readonly [prop in keyof TRGB as Uppercase<prop>]: number;
-};
+  [index in TColor]: `${number}:${Capitalize<TColor>}`;
+}
 
-/**
- * typeof
- */
+type Rqrd<T> = {
+  [key in keyof T]-?: T[key]
+}
 
-type TRGBCustom = typeof pink;
+interface ISomething<T> { 
+  
+}
 
-type TReturnLengthFn = (str: string) => number;
+type Opt = {
+  a?: number
+  b?: string
+}
 
-const returnLengthFn: TReturnLengthFn = (str) => str.length;
-
-type TAnotherFn = typeof returnLengthFn;
-
-type TLength = ReturnType<typeof returnLengthFn>;
-
-/**
- * generic
- */
+type RqrdOpt = Rqrd<Opt>
 
 type TFriend = {
-  name: string;
-  age: number;
-};
+  name: string
+  age: number
+}
 
 type TPost = {
-  title: string;
-  text: string;
-  likes: number;
-};
+  title: string
+  text: string
+  likes: number
+}
 
-type TResponseBody<T> = {
-  success: boolean;
-  data: T[];
-};
+type TResponseBody<D> = {
+  success: boolean
+  data: D
+}
 
 type TResponse<T> = Promise<{
-  json: () => Promise<T>;
-}>;
+  json: () => Promise<T>
+}>
 
-// type TResponseBodyPost = {
-//   success: boolean;
-//   data: TPost[];
-// };
+type TResponseFriends = TResponse<TFriend[]>
+type TResponsePosts = TResponse<TPost[]>
 
-const api: <T>(url: string) => TResponse<TResponseBody<T>> = (url) => {
-  return fetch(url);
-};
+const api = <T>(url: string): TResponse<T> => fetch(url)
+const example = <T extends string>(data: T) => ({ data })
 
-// const apiPosts: (url: string) => Promise<TResponseBody<TPost>> = (url) => {
-//   return fetch(url).then((res) => res.json());
-// };
+type SomeString = 'a' | 'b' | 'c' | number
 
-api<TFriend>("ya.ru")
-  .then((res) => res.json())
-  .then((res) => res.data);
+const ex2 = example('')
+const ex3 = example<SomeString>(213)
+const ex4 = example('asdad')
 
-api<TPost>("ya.ru")
-  .then((res) => res.json())
-  .then((res) => res.data);
+api('ya.ru')
+  .then(res => res.json())
+  .then(res => res)
 
-/**
- * utility-types
- */
-
-type TRGBNotRequired = Partial<typeof pink>;
-
-type TRGBRequired = Required<TRGB>;
-
-type TRGBRecord = Record<Uppercase<keyof TRGB>, TRGBNotRequired>;
-
-type TRG = Pick<TRGB, "red" | "green">;
-type TGB = Omit<TRGB, "red">;
+api<TResponseBody<TFriend[]>>('ya.ru')
+  .then(res => res.json())
+  .then(res => res.data)
