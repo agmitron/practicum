@@ -1,0 +1,513 @@
+agmitron@Liaos-MacBook-Air Code % psql 
+psql (14.5 (Homebrew))
+Type "help" for help.
+
+agmitron=# CREATE DATABASE webinar0110;
+CREATE DATABASE
+agmitron=# CREATE USER webinar0110_user;
+CREATE ROLE
+agmitron=# GRANT ALL PRIVILEGES ON DATABASE webinar0110 TO webinar0110_user;
+GRANT
+agmitron=# \c webinar0110 webinar0110_user;
+You are now connected to database "webinar0110" as user "webinar0110_user".
+webinar0110=> CREATE TABLE messages (id serial primary key, body text);
+CREATE TABLE
+webinar0110=> SELECT * FROM messages;
+ id | body 
+----+------
+(0 rows)
+
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> SELECT * FROM messages;
+ id |               body               
+----+----------------------------------
+  1 | ffd17ea61fab416533241475260b58c1
+(1 row)
+
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> SELECT * FROM messages;
+ id |               body               
+----+----------------------------------
+  1 | ffd17ea61fab416533241475260b58c1
+  2 | c3b751d4f770051f80bcbd59f8bf07ba
+  3 | cf50371bf88144305743fc818f6f8e47
+  4 | 4a48e709505092294dace067b5a36783
+  5 | e3b437434c4e4af7dd7443a13c1485ed
+(5 rows)
+webinar0110=> INSERT INTO messages (body) SELECT md5(random()::text) from generate_series(1, 1000000);
+INSERT 0 1000000
+webinar0110=> SELECT * FROM messages LIMIT 5;
+ id |               body               
+----+----------------------------------
+  1 | ffd17ea61fab416533241475260b58c1
+  2 | c3b751d4f770051f80bcbd59f8bf07ba
+  3 | cf50371bf88144305743fc818f6f8e47
+  4 | 4a48e709505092294dace067b5a36783
+  5 | e3b437434c4e4af7dd7443a13c1485ed
+(5 rows)
+
+webinar0110=> SELECT * FROM messages LIMIT 10;
+ id |               body               
+----+----------------------------------
+  1 | ffd17ea61fab416533241475260b58c1
+  2 | c3b751d4f770051f80bcbd59f8bf07ba
+  3 | cf50371bf88144305743fc818f6f8e47
+  4 | 4a48e709505092294dace067b5a36783
+  5 | e3b437434c4e4af7dd7443a13c1485ed
+  6 | 73f5313188d1a47e2fdbc54a39a208ae
+  7 | 2783c69a4fe18a473d709a156bb404a5
+  8 | 097852a35b5c08954012f83ae981a079
+  9 | 6367c27e166b4912fc04b2e8c5468058
+ 10 | 1705bb97891cb5ebf04c500b994dc27c
+(10 rows)
+
+webinar0110=> SELECT * FROM messages LIMIT 10 OFFSET 5;
+ id |               body               
+----+----------------------------------
+  6 | 73f5313188d1a47e2fdbc54a39a208ae
+  7 | 2783c69a4fe18a473d709a156bb404a5
+  8 | 097852a35b5c08954012f83ae981a079
+  9 | 6367c27e166b4912fc04b2e8c5468058
+ 10 | 1705bb97891cb5ebf04c500b994dc27c
+ 11 | 334f7b31b3c3c54ea4e9d48a361bb922
+ 12 | e15547d1080ecfbdb958d170d6470eef
+ 13 | bc36652f3708e88bf98042329b6c1b55
+ 14 | 89e011f811ea18784ce6ef2bd9e94111
+ 15 | c94c07c21439e6f5e5e98394f08f0000
+(10 rows)
+
+webinar0110=> SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 0;
+   id    |               body               
+---------+----------------------------------
+ 1000005 | c57da81042df2994c13135d8dfb1e267
+ 1000004 | 58cfc8b440e901cf89e77229f14135e1
+ 1000003 | e5664d10cb2e8fed270af0509e292187
+ 1000002 | 017462150afa387317fbe1cbd3d78460
+ 1000001 | 71b6065e3e2f8aa60c30303170926e8d
+(5 rows)
+
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 0;
+   id    |               body               
+---------+----------------------------------
+ 1000006 | d2b5b361dd40e964268d265b93d83d66
+ 1000005 | c57da81042df2994c13135d8dfb1e267
+ 1000004 | 58cfc8b440e901cf89e77229f14135e1
+ 1000003 | e5664d10cb2e8fed270af0509e292187
+ 1000002 | 017462150afa387317fbe1cbd3d78460
+(5 rows)
+
+webinar0110=> SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 5;
+   id    |               body               
+---------+----------------------------------
+ 1000001 | 71b6065e3e2f8aa60c30303170926e8d
+ 1000000 | 7860c575fba32926d2a85a61c8b45352
+  999999 | 00c782107508fbc00e6ee80c00a25a7e
+  999998 | d3002419fe11769ec608e4886f865951
+  999997 | aff1b8e27dc07ae6e445f0b91509959d
+(5 rows)
+
+webinar0110=> SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 0;
+   id    |               body               
+---------+----------------------------------
+ 1000006 | d2b5b361dd40e964268d265b93d83d66
+ 1000005 | c57da81042df2994c13135d8dfb1e267
+ 1000004 | 58cfc8b440e901cf89e77229f14135e1
+ 1000003 | e5664d10cb2e8fed270af0509e292187
+ 1000002 | 017462150afa387317fbe1cbd3d78460
+(5 rows)
+
+webinar0110=> INSERT INTO messages (body) VALUES (md5(random()::text));
+INSERT 0 1
+webinar0110=> SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 5;
+   id    |               body               
+---------+----------------------------------
+ 1000002 | 017462150afa387317fbe1cbd3d78460
+ 1000001 | 71b6065e3e2f8aa60c30303170926e8d
+ 1000000 | 7860c575fba32926d2a85a61c8b45352
+  999999 | 00c782107508fbc00e6ee80c00a25a7e
+  999998 | d3002419fe11769ec608e4886f865951
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 5;
+                                                                    QUERY PLAN                                                                     
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.60..0.77 rows=5 width=37) (actual time=0.077..0.079 rows=5 loops=1)
+   ->  Index Scan Backward using messages_pkey on messages  (cost=0.42..34317.50 rows=1000005 width=37) (actual time=0.074..0.076 rows=10 loops=1)
+ Planning Time: 0.280 ms
+ Execution Time: 0.109 ms
+(4 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 500;
+                                                                     QUERY PLAN                                                                     
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=17.58..17.76 rows=5 width=37) (actual time=0.397..0.400 rows=5 loops=1)
+   ->  Index Scan Backward using messages_pkey on messages  (cost=0.42..34317.50 rows=1000005 width=37) (actual time=0.062..0.355 rows=505 loops=1)
+ Planning Time: 0.211 ms
+ Execution Time: 0.429 ms
+(4 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 5000;
+                                                                     QUERY PLAN                                                                      
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=172.01..172.18 rows=5 width=37) (actual time=1.668..1.671 rows=5 loops=1)
+   ->  Index Scan Backward using messages_pkey on messages  (cost=0.42..34317.50 rows=1000005 width=37) (actual time=0.053..1.418 rows=5005 loops=1)
+ Planning Time: 0.181 ms
+ Execution Time: 1.701 ms
+(4 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages ORDER BY id DESC LIMIT 5 OFFSET 500000;
+                                                                       QUERY PLAN                                                                       
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=17158.88..17159.05 rows=5 width=37) (actual time=94.189..94.190 rows=5 loops=1)
+   ->  Index Scan Backward using messages_pkey on messages  (cost=0.42..34317.50 rows=1000005 width=37) (actual time=0.029..74.375 rows=500005 loops=1)
+ Planning Time: 0.095 ms
+ Execution Time: 94.206 ms
+(4 rows)
+
+webinar0110=> SELECT * FROM messages ORDER BY id ASC LIMIT 5 OFFSET 0;
+ id |               body               
+----+----------------------------------
+  1 | ffd17ea61fab416533241475260b58c1
+  2 | c3b751d4f770051f80bcbd59f8bf07ba
+  3 | cf50371bf88144305743fc818f6f8e47
+  4 | 4a48e709505092294dace067b5a36783
+  5 | e3b437434c4e4af7dd7443a13c1485ed
+(5 rows)
+
+webinar0110=> SELECT * FROM messages WHERE id > 5 ORDER BY id ASC LIMIT 5 OFFSET 0;
+ id |               body               
+----+----------------------------------
+  6 | 73f5313188d1a47e2fdbc54a39a208ae
+  7 | 2783c69a4fe18a473d709a156bb404a5
+  8 | 097852a35b5c08954012f83ae981a079
+  9 | 6367c27e166b4912fc04b2e8c5468058
+ 10 | 1705bb97891cb5ebf04c500b994dc27c
+(5 rows)
+
+webinar0110=> SELECT * FROM messages WHERE id > 5 ORDER BY id ASC LIMIT 5;
+ id |               body               
+----+----------------------------------
+  6 | 73f5313188d1a47e2fdbc54a39a208ae
+  7 | 2783c69a4fe18a473d709a156bb404a5
+  8 | 097852a35b5c08954012f83ae981a079
+  9 | 6367c27e166b4912fc04b2e8c5468058
+ 10 | 1705bb97891cb5ebf04c500b994dc27c
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages WHERE id > 5 ORDER BY id ASC LIMIT 5;
+                                                               QUERY PLAN                                                                
+-----------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.61 rows=5 width=37) (actual time=0.030..0.032 rows=5 loops=1)
+   ->  Index Scan using messages_pkey on messages  (cost=0.42..36817.43 rows=1000000 width=37) (actual time=0.028..0.030 rows=5 loops=1)
+         Index Cond: (id > 5)
+ Planning Time: 0.236 ms
+ Execution Time: 0.050 ms
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages WHERE id > 500 ORDER BY id ASC LIMIT 5;
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.61 rows=5 width=37) (actual time=0.035..0.037 rows=5 loops=1)
+   ->  Index Scan using messages_pkey on messages  (cost=0.42..36799.92 rows=999457 width=37) (actual time=0.034..0.035 rows=5 loops=1)
+         Index Cond: (id > 500)
+ Planning Time: 0.132 ms
+ Execution Time: 0.050 ms
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages WHERE id > 1500 ORDER BY id ASC LIMIT 5;
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.61 rows=5 width=37) (actual time=0.059..0.062 rows=5 loops=1)
+   ->  Index Scan using messages_pkey on messages  (cost=0.42..36759.74 rows=998361 width=37) (actual time=0.058..0.059 rows=5 loops=1)
+         Index Cond: (id > 1500)
+ Planning Time: 0.159 ms
+ Execution Time: 0.080 ms
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages WHERE id > 150000 ORDER BY id ASC LIMIT 5;
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.61 rows=5 width=37) (actual time=0.085..0.088 rows=5 loops=1)
+   ->  Index Scan using messages_pkey on messages  (cost=0.42..31287.81 rows=849736 width=37) (actual time=0.084..0.086 rows=5 loops=1)
+         Index Cond: (id > 150000)
+ Planning Time: 0.143 ms
+ Execution Time: 0.112 ms
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM messages WHERE id > 990000 ORDER BY id ASC LIMIT 5;
+                                                             QUERY PLAN                                                              
+-------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.61 rows=5 width=37) (actual time=0.029..0.032 rows=5 loops=1)
+   ->  Index Scan using messages_pkey on messages  (cost=0.42..398.05 rows=10607 width=37) (actual time=0.028..0.029 rows=5 loops=1)
+         Index Cond: (id > 990000)
+ Planning Time: 0.214 ms
+ Execution Time: 0.049 ms
+(5 rows)
+
+webinar0110=> CREATE TABLE products (id serial primary key, name text, price int);
+CREATE TABLE
+webinar0110=> INSERT INTO products (name, price) SELECT md5(random()::text), floor(random() * 1000) + 1 FROM generate_series(1, 1000000);
+INSERT 0 1000000
+webinar0110=> SELECT * FROM products ORDER BY pricr ASC LIMIT 5;
+ERROR:  column "pricr" does not exist
+LINE 1: SELECT * FROM products ORDER BY pricr ASC LIMIT 5;
+                                        ^
+HINT:  Perhaps you meant to reference the column "products.price".
+webinar0110=> SELECT * FROM products ORDER BY price ASC LIMIT 5;
+  id  |               name               | price 
+------+----------------------------------+-------
+ 1140 | ccfc53e90ee7566169418d460ff09e2d |     1
+  581 | 2681a698f39017832576a38c00bef970 |     1
+  596 | 2781472a28be84dc151a4fd455de1315 |     1
+ 1048 | 277ae271613c0c3006556a62d33efc01 |     1
+ 2536 | 1001dd26bba18033d514811eca3ef111 |     1
+(5 rows)
+
+webinar0110=> SELECT * FROM products LIMIT 5;
+ id |               name               | price 
+----+----------------------------------+-------
+  1 | ca961451b466601323e955e6f85fa755 |   653
+  2 | e07433c2558da225f365d4f2dcde0c74 |   408
+  3 | f98ffcba4609754b99d0188a6d522e5d |   563
+  4 | f3d5bc718bb413b88f748be7c146ae0b |   296
+  5 | 3d176e5f2e26ea447df2d6f6c2be5f23 |   110
+(5 rows)
+
+webinar0110=> SELECT * FROM products WHERE price > 1 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+  id   |               name               | price 
+-------+----------------------------------+-------
+  5795 | b2fc7c74f389c9775df06f859f3de4f0 |     2
+ 10786 | bddbac2368bbcafa2d017311583f3436 |     2
+  2154 | ebe8f94034afdb3d76209b2afe46ad78 |     2
+  3933 | 5ce4bc998139d6b92504757c574881f4 |     2
+ 11031 | f0ef1f206e6f900bb2b9626601402a79 |     2
+(5 rows)
+
+webinar0110=> SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+  id  |               name               | price 
+------+----------------------------------+-------
+ 2311 | 7e32e0736c2bfacad7a6714841dbf090 |     6
+ 3917 | 85a3f08449979b2dd0ff114c337e261b |     6
+ 1337 | 118b8cefb62da27ee64eb00855648e58 |     6
+  808 | 77248645d008603fe174bb8c1bf6c5ce |     6
+ 7972 | bedbcd522f5379f0752be67ebd766d5e |     6
+(5 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=24524.30..24524.88 rows=5 width=41) (actual time=80.281..81.203 rows=5 loops=1)
+   ->  Gather Merge  (cost=24524.30..121274.55 rows=829230 width=41) (actual time=80.280..81.201 rows=5 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=23524.27..24560.81 rows=414615 width=41) (actual time=71.382..71.382 rows=5 loops=3)
+               Sort Key: price
+               Sort Method: top-N heapsort  Memory: 25kB
+               Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.009..41.587 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.134 ms
+ Execution Time: 81.230 ms
+(14 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 50;
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=31410.90..31416.74 rows=50 width=41) (actual time=75.722..76.686 rows=50 loops=1)
+   ->  Gather Merge  (cost=31410.90..128161.16 rows=829230 width=41) (actual time=75.721..76.682 rows=50 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=30410.88..31447.42 rows=414615 width=41) (actual time=72.423..72.425 rows=50 loops=3)
+               Sort Key: price
+               Sort Method: top-N heapsort  Memory: 31kB
+               Worker 0:  Sort Method: top-N heapsort  Memory: 31kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 31kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.012..42.119 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.112 ms
+ Execution Time: 76.707 ms
+(14 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5000;                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=45184.11..45767.49 rows=5000 width=41) (actual time=83.245..84.840 rows=5000 loops=1)
+   ->  Gather Merge  (cost=45184.11..141934.37 rows=829230 width=41) (actual time=83.244..84.616 rows=5000 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=44184.09..45220.63 rows=414615 width=41) (actual time=78.180..78.233 rows=2163 loops=3)
+               Sort Key: price
+               Sort Method: top-N heapsort  Memory: 1045kB
+               Worker 0:  Sort Method: top-N heapsort  Memory: 1047kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 1047kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.010..38.890 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.136 ms
+ Execution Time: 84.983 ms
+(14 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 213123;
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=69081.70..93947.78 rows=213123 width=41) (actual time=147.317..175.020 rows=213123 loops=1)
+   ->  Gather Merge  (cost=69081.70..165831.95 rows=829230 width=41) (actual time=147.316..166.912 rows=213123 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=68081.67..69118.21 rows=414615 width=41) (actual time=133.439..137.528 rows=71357 loops=3)
+               Sort Key: price
+               Sort Method: external merge  Disk: 18672kB
+               Worker 0:  Sort Method: external merge  Disk: 16992kB
+               Worker 1:  Sort Method: external merge  Disk: 17016kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.012..30.379 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.273 ms
+ Execution Time: 180.333 ms
+(14 rows)
+
+...skipping...
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=69081.70..93947.78 rows=213123 width=41) (actual time=147.317..175.020 rows=213123 loops=1)
+   ->  Gather Merge  (cost=69081.70..165831.95 rows=829230 width=41) (actual time=147.316..166.912 rows=213123 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=68081.67..69118.21 rows=414615 width=41) (actual time=133.439..137.528 rows=71357 loops=3)
+               Sort Key: price
+               Sort Method: external merge  Disk: 18672kB
+               Worker 0:  Sort Method: external merge  Disk: 16992kB
+               Worker 1:  Sort Method: external merge  Disk: 17016kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.012..30.379 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.273 ms
+ Execution Time: 180.333 ms
+(14 rows)
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 990000;
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=69081.70..165831.95 rows=829230 width=41) (actual time=162.660..281.731 rows=990000 loops=1)
+   ->  Gather Merge  (cost=69081.70..165831.95 rows=829230 width=41) (actual time=162.658..244.048 rows=990000 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=68081.67..69118.21 rows=414615 width=41) (actual time=155.708..174.780 rows=330558 loops=3)
+               Sort Key: price
+               Sort Method: external merge  Disk: 19192kB
+               Worker 0:  Sort Method: external merge  Disk: 16720kB
+               Worker 1:  Sort Method: external merge  Disk: 16768kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.017..35.390 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.237 ms
+ Execution Time: 304.871 ms
+(14 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=24524.30..24524.88 rows=5 width=41) (actual time=77.275..78.145 rows=5 loops=1)
+   ->  Gather Merge  (cost=24524.30..121274.55 rows=829230 width=41) (actual time=77.274..78.143 rows=5 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Sort  (cost=23524.27..24560.81 rows=414615 width=41) (actual time=70.507..70.508 rows=5 loops=3)
+               Sort Key: price
+               Sort Method: top-N heapsort  Memory: 25kB
+               Worker 0:  Sort Method: top-N heapsort  Memory: 25kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 25kB
+               ->  Parallel Seq Scan on products  (cost=0.00..16637.67 rows=414615 width=41) (actual time=0.008..42.405 rows=331647 loops=3)
+                     Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+                     Rows Removed by Filter: 1687
+ Planning Time: 0.304 ms
+ Execution Time: 78.163 ms
+(14 rows)
+
+webinar0110=> SELECT * FROM products WHERE price > 1 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+  id   |               name               | price 
+-------+----------------------------------+-------
+  5795 | b2fc7c74f389c9775df06f859f3de4f0 |     2
+ 10786 | bddbac2368bbcafa2d017311583f3436 |     2
+  2154 | ebe8f94034afdb3d76209b2afe46ad78 |     2
+  3933 | 5ce4bc998139d6b92504757c574881f4 |     2
+ 11031 | f0ef1f206e6f900bb2b9626601402a79 |     2
+(5 rows)
+
+webinar0110=> SELECT * FROM products LIMIT 5;
+ id |               name               | price 
+----+----------------------------------+-------
+  1 | ca961451b466601323e955e6f85fa755 |   653
+  2 | e07433c2558da225f365d4f2dcde0c74 |   408
+  3 | f98ffcba4609754b99d0188a6d522e5d |   563
+  4 | f3d5bc718bb413b88f748be7c146ae0b |   296
+  5 | 3d176e5f2e26ea447df2d6f6c2be5f23 |   110
+(5 rows)
+
+webinar0110=> CREATE INDEX products_btree_idx ON products (price, id);
+CREATE INDEX
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+                                                                  QUERY PLAN                                                                   
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.78 rows=5 width=41) (actual time=11.243..11.251 rows=5 loops=1)
+   ->  Index Scan using products_btree_idx on products  (cost=0.42..70864.41 rows=995076 width=41) (actual time=11.240..11.247 rows=5 loops=1)
+         Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+         Rows Removed by Filter: 5060
+ Planning Time: 0.581 ms
+ Execution Time: 11.272 ms
+(6 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 99000;
+                                                                    QUERY PLAN                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..7050.68 rows=99000 width=41) (actual time=7.435..87.810 rows=99000 loops=1)
+   ->  Index Scan using products_btree_idx on products  (cost=0.42..70864.41 rows=995076 width=41) (actual time=7.432..80.979 rows=99000 loops=1)
+         Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+         Rows Removed by Filter: 5060
+ Planning Time: 0.214 ms
+ Execution Time: 91.395 ms
+(6 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 5;
+                                                                  QUERY PLAN                                                                   
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..0.78 rows=5 width=41) (actual time=10.195..10.203 rows=5 loops=1)
+   ->  Index Scan using products_btree_idx on products  (cost=0.42..70864.41 rows=995076 width=41) (actual time=10.193..10.200 rows=5 loops=1)
+         Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+         Rows Removed by Filter: 5060
+ Planning Time: 0.199 ms
+ Execution Time: 10.224 ms
+(6 rows)
+
+webinar0110=> EXPLAIN ANALYSE SELECT * FROM products WHERE price > 5 OR (price = 1 AND id = 2425) ORDER BY price ASC LIMIT 99000;
+                                                                    QUERY PLAN                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..7050.68 rows=99000 width=41) (actual time=7.469..90.181 rows=99000 loops=1)
+   ->  Index Scan using products_btree_idx on products  (cost=0.42..70864.41 rows=995076 width=41) (actual time=7.467..83.321 rows=99000 loops=1)
+         Filter: ((price > 5) OR ((price = 1) AND (id = 2425)))
+         Rows Removed by Filter: 5060
+ Planning Time: 0.164 ms
+ Execution Time: 93.879 ms
+(6 rows)
