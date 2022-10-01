@@ -1,0 +1,13 @@
+{
+  "name": "01.10.2022",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pg": "^8.8.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
