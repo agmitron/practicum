@@ -2,11 +2,11 @@ import { Controller, Post, Body, ValidationPipe, UnprocessableEntityException } 
 import { JwtPayloadInterface } from './interfaces';
 import { AuthModel, UserModel } from './../models';
 import { AuthService } from './auth.service';
-import {UserService} from './../user';
+import { UserService } from './../user';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private readonly userService: UserService) {}
+  constructor(private readonly authService: AuthService, private readonly userService: UserService) { }
 
   @Post('/login')
   async login(@Body(new ValidationPipe()) auth: AuthModel): Promise<string> {

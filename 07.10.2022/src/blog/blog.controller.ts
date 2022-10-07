@@ -17,12 +17,21 @@ import { BlogService } from './blog.service';
 import { BlogModel } from './../models';
 import { UpdateResult } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBody, ApiQuery } from '@nestjs/swagger'
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('blog')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
+  @ApiQuery({
+    name: 'limit',
+    type: 'string',
+    required: false
+  })
+  @ApiBody({
+    type: BlogModel
+  })
   @Get()
   async index(@Request() request): Promise<Pagination<BlogEntity>> {
     return await this.blogService.paginate({
