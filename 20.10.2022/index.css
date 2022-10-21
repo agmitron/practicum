@@ -1,0 +1,9 @@
+.hero {
+  width: 50px;
+  height: 150px;
+  position: absolute;
+}
+
+.game {
+  position: relative;
+}
