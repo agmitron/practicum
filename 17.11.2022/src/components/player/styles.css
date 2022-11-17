@@ -1,0 +1,25 @@
+.player {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 20px;
+}
+
+.player__name {
+  font-style: italic;
+}
+
+.player__action {
+  border: none;
+  background-color: #3C031F;
+  padding: 20px 40px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.player__image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
