@@ -1,13 +1,32 @@
-import React from 'react'
-import './styles.css'
+import React from "react";
+import { arrayOf, number, shape, string } from "prop-types";
+import "./styles.css";
 
-const Player = ({ status, name, imageWait, imageActive, action }) => {
-  console.log(`${name} was changed`)
-  return <div className='player'>
-    <img src={status ==='wait' ? imageWait : imageActive} alt={name} className='player__image' />
-    <h2 className='player__name'>{name}</h2>
-    {action && <button className='player__action' onClick={action}>Change</button>}
-  </div>
-}
+const propTypes = {
+  list: arrayOf(
+    shape({
+      id: number,
+      name: string,
+    })
+  ).isRequired,
+};
 
-export default Player
+const Player = ({ status, name, imageWait, imageActive, action, list }) => {
+  return (
+    <div className="player">
+      <h3 className="player__name">{name}</h3>
+      <img
+        className="player__image"
+        src={status === "active" ? imageActive : imageWait}
+        alt={name}
+      />
+      <button className="player__action" onClick={action}>
+        PUSH ME
+      </button>
+    </div>
+  );
+};
+
+Player.propTypes = propTypes;
+
+export default Player;

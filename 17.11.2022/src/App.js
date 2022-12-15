@@ -1,43 +1,24 @@
+import { useMemo, useState } from 'react';
 import './App.css';
 import { Player } from './components'
-import { useState } from 'react'
 import BatterActive from './images/batter_active.jpeg'
 import BatterWait from './images/batter_wait.jpeg'
 
 import CatcherActive from './images/catcher_active.jpeg'
 import CatcherWait from './images/catcher_wait.jpeg'
 
+const toggleStatus = prev => prev === 'wait' ? 'active' : 'wait'
+
 function App() {
-  const [ status, setStatus ] = useState({
-    catcher: 'wait',
-    batter: 'wait'
-  })
+  const [list, setList] = useState([])
 
-  const changeStatus = () => {
-    setStatus({
-      catcher: 'active',
-      batter: 'active'
-    })
-  }
+  const memoizedList = useMemo(() => list, [list])
 
-  return (
-    <div className="App">
-      <Player
-        status={status.batter}
-        name='Batter'
-        imageWait={BatterWait}
-        imageActive={BatterActive}
-        action={changeStatus}
-      />
+  const addFirst = () => setList(prev => [Math.random(), ...prev])
 
-      <Player
-        status={status.catcher}
-        name='Catcher'
-        imageWait={CatcherWait}
-        imageActive={CatcherActive}
-      />
-    </div>
-  );
+  return <div className="App">
+    <Player action={() => setList(123)} list={memoizedList} />
+  </div>;
 }
 
 export default App;
