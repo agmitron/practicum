@@ -1,0 +1,41 @@
+.quote {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+}
+
+.quote__text {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+}
+
+.quote__text::before, .quote__text::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 48px;
+  height: 48px;
+  background-image: url('../../images/quote_icon.svg');
+  background-repeat: no-repeat;
+}
+
+.quote__text::before {
+  left: -40px;
+  top: -10px;
+}
+
+.quote__text::after {
+  right: -34px;
+  bottom: -10px;
+  transform: rotate(180deg);
+}
+
+.quote__author, .quote__link {
+  text-align: right;
+  font-size: 24px;
+}
+
