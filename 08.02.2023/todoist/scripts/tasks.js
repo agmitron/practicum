@@ -1,3 +1,4 @@
+import { createTask, getAllTasks, getProjectTasks } from './api.js';
 import { showPreloader, hidePreloader, showError } from "./utils.js";
 
 const tasksContainer = document.querySelector(".todolist__list");
@@ -38,8 +39,18 @@ const setTaskSubmitListener = (tasksContainer, projectId) => {
   const tasksList = tasksContainer.querySelector('.todolist__tasks');
 
   submitForm.addEventListener('submit', (evt) => {
-     evt.preventDefault();
-     setButtonState(button, true);
+    evt.preventDefault();
+    setButtonState(button, true);
+
+    createTask(input.value, projectId)
+      .then((task) => {
+        const taskElement = createTaskElement(task)
+
+        tasksList.prepend(taskElement)
+
+        console.log({ tasksContainer, taskElement })
+      })
+      .finally(() => setButtonState(button, false))
   })
 }
 
@@ -50,5 +61,15 @@ const renderTasks = (tasks, projectId) => {
 
 //вызывает загрузку списка задач для выбранного проекта
 export const loadProjectTasks = (projectId) => {
-
+  showPreloader(tasksContainer);
+  getProjectTasks(projectId)
+    .then(tasks => renderTasks(tasks, projectId))
+    .finally(() => hidePreloader(tasksContainer))
 };
+
+export const loadAllTasks = () => {
+  showPreloader(tasksContainer);
+  getAllTasks()
+    .then(tasks => renderTasks(tasks, 0))
+    .finally(() => hidePreloader(tasksContainer))
+}

@@ -1,5 +1,6 @@
+import { getProjects } from './api.js';
 import { loadProjectTasks } from "./tasks.js";
-import { showPreloader, hidePreloader, showError} from "./utils.js";
+import { showPreloader, hidePreloader, showError } from "./utils.js";
 
 const projectsContainer = document.querySelector(".projects");
 const projectsTemplate = document.querySelector("#projects-template");
@@ -38,5 +39,7 @@ const renderProjects = (projects) => {
 };
 
 export const loadProjects = () => {
-  showPreloader(projectsContainer);
+  getProjects()
+    .then(renderProjects)
+    .catch(error => showError(projectsContainer, error.message))
 };
