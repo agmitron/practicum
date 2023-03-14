@@ -4,12 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve --open",
-    "build": "webpack"
+    "dev": "webpack serve --open --mode development",
+    "build": "webpack --mode production"
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.76.1",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "validate.js": "^0.13.1"
   }
 }
