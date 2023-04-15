@@ -2,4 +2,4 @@
 
 ## Веб-разработчик+
 
-- [23.02.2023. Дебаг и частые ошибки](https://github.com/agmitron/praktikum/tree/master/23.03.2023)
+- [23.02.2023. Дебаг и частые ошибки](https://github.com/agmitron/praktikum/tree/master/23.02.2023)
