@@ -5,10 +5,9 @@ const greeting = (phrase) => {
 const parent = document.querySelector('h1')
 
 const greetingMessageCreator = ({ name, surname }) => {
-  debugger
   const message = `Hello, ${name} ${surname}!`
 
-  greeting(message)
+  greeting(mesage)
   parent.textContent = message
 }
 
