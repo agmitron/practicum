@@ -7,3 +7,4 @@
 ## Буткемп "Фронтенд-разработчик"
 
 - [03.05.2023. О лэйауте](https://github.com/agmitron/praktikum/tree/master/03.05.2023)
+- [10.05.2023. О лэйауте](https://github.com/agmitron/praktikum/tree/master/10.05.2023)
