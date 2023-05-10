@@ -1,0 +1,14 @@
+.dropdown__menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  row-gap: 7px;
+  transform: translateY(45px) translateX(-1px);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-top: none;
+  width: 100%;
+  padding: 7px 0;
+  margin: 0;
+}

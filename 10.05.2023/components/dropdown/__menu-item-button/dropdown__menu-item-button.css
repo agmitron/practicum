@@ -1,0 +1,18 @@
+.dropdown__menu-item-button {
+  width: 30px;
+  height: 30px;
+  color: rgba(31, 32, 65, 0.5);
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid rgba(31, 32, 65, 0.5);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.dropdown__menu-item-button:hover {
+  background-color: #eeeeee;
+}
+
+.dropdown__menu-item-button:active {
+  background-color: #e3e1e1;
+}

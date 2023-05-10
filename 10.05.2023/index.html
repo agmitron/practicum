@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEM</title>
+    <link rel="stylesheet" href="./components/index.css" />
+  </head>
+  <body>
+    <main>
+      <label class="dropdown">
+        <input
+          class="dropdown__input"
+          type="text"
+          name="dropdown"
+          placeholder="2 bedrooms, 2 beds..."
+        />
+        <button class="dropdown__button"></button>
+        <ul class="dropdown__menu">
+          <li class="dropdown__menu-item">
+            <span class="dropdown__menu-item-text">Bedrooms</span>
+            <div class="dropdown__menu-item-count">
+              <button class="dropdown__menu-item-button">-</button>
+              <span class="dropdown__menu-item-count-text">2</span>
+              <button class="dropdown__menu-item-button">+</button>
+            </div>
+          </li>
+
+          <li class="dropdown__menu-item">
+            <span class="dropdown__menu-item-text">Beds</span>
+            <div class="dropdown__menu-item-count">
+              <button class="dropdown__menu-item-button">-</button>
+              <span class="dropdown__menu-item-count-text">2</span>
+              <button class="dropdown__menu-item-button">+</button>
+            </div>
+          </li>
+
+          <li class="dropdown__menu-item">
+            <span class="dropdown__menu-item-text">Bathrooms</span>
+            <div class="dropdown__menu-item-count">
+              <button disabled class="dropdown__menu-item-button dropdown__menu-item-button_disabled">-</button>
+              <span class="dropdown__menu-item-count-text">0</span>
+              <button class="dropdown__menu-item-button">+</button>
+            </div>
+          </li>
+        </ul>
+      </label>
+    </main>
+  </body>
+</html>

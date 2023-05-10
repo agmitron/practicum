@@ -1,0 +1,8 @@
+.dropdown__input {
+  width: 100%;
+  padding: 15px;
+  outline: 0;
+  border: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}

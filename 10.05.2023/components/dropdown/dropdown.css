@@ -1,0 +1,23 @@
+@import url('./__button/dropdown__button.css');
+@import url('./__input/dropdown__input.css');
+@import url('./__menu-item-button/dropdown__menu-item-button.css');
+@import url('./__menu-item-button/_disabled/dropdown__menu-item-button_disabled.css');
+@import url('./__menu-item-count/dropdown__menu-item-count.css');
+@import url('./__menu-item-text/dropdown__menu-item-text.css');
+@import url('./__menu-item/dropdown__menu-item.css');
+@import url('./__menu/dropdown__menu.css');
+
+.dropdown {
+  display: flex;
+  max-width: 320px;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  outline: 0;
+  transition: all .2s ease;
+  position: relative;
+}
+
+.dropdown:focus, .dropdown:hover {
+  border: 1px solid rgba(31, 32, 65, 0.5);
+}

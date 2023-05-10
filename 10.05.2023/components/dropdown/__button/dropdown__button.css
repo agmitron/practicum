@@ -1,0 +1,9 @@
+.dropdown__button {
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  background-image: url('/assets/images/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+}

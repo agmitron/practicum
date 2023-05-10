@@ -1,0 +1,7 @@
+.dropdown__menu-item-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 92px;
+  width: 100%;
+}
