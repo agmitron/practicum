@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-section {
+  background-image: url("./__background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 214px 90px 88px;
+  margin: 0 auto;
+  max-width: 1184px;
+  position: relative;
+}
+
+.main-section::after {
+  content: '';
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .3;
+}
+
+.heading {
+  color: white;
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 76px;
+  margin: 0;
+}
+
+.parameter {
+  margin: 0;
+  color: white;
+  font-size: 18px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list, .list__item {
+  margin: 0;
+  padding: 0;
+}
+
+.list__item {
+  list-style: none;
+  margin-bottom: 18px;
+}
+
+.main-section__list {
+  margin-top: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.main-section__heading {
+  max-width: 612px;
+  position: relative;
+  z-index: 2;
+}
+
+@media screen and (max-width: 1279px) {
+  .main-section__list .list__item {
+    margin-bottom: 0;
+  }
+
+  .main-section__list .list__item:last-child {
+    display: none;
+  }
+
+  .main-section {
+    padding: 196px 90px 129px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .main-section {
+    padding: 115px 90px 59px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main-section {
+    padding: 20px 16px 20px;
+  }
+
+  .heading {
+    font-size: 32px;
+    line-height: 35px;
+  }
+
+  .parameter {
+    font-size: 12px;
+  }
+}
