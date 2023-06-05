@@ -8,3 +8,4 @@
 
 - [03.05.2023. О лэйауте](https://github.com/agmitron/praktikum/tree/master/03.05.2023)
 - [10.05.2023. БЭМ и Гит, как он есть в жизни](https://github.com/agmitron/praktikum/tree/master/10.05.2023)
+- [15.05.2023. Воркшоп по адаптивной вёрстке](https://github.com/agmitron/praktikum/tree/master/15.05.2023)
