@@ -1,0 +1,11 @@
+.intro__title {
+  margin: 0 0 40px;
+  /*Если отходить от макета к ПП, то нижний отступ тут меньше*/
+}
+
+@media screen and (max-width: 640px){
+  .intro__title {
+    font-size: 32px;
+    line-height: 35px;
+  }
+}

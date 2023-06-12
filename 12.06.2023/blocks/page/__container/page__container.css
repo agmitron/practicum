@@ -1,0 +1,17 @@
+.page__container {
+  min-width: 320px;
+  max-width: 1184px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /*Не забывайте про прижатие подвала в можно лучше*/
+  margin: 0 auto;
+  padding: 34px 0 24px;
+}
+
+@media screen and (max-width: 425px) {
+  .page__container {
+    padding-top:  20px;
+  }
+}

@@ -1,0 +1,11 @@
+.place__title {
+  grid-area: title;
+  align-self: end;
+  margin: 0;
+}
+
+@media screen and (max-width: 568px){
+  .place__title {
+    margin: 0 16px;
+  }
+}

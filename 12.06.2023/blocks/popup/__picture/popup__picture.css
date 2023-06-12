@@ -1,0 +1,6 @@
+.popup__picture {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 13px;
+  margin-top: 40px;
+}

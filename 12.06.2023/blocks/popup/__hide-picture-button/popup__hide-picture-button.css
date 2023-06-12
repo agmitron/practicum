@@ -1,0 +1,11 @@
+.popup__hide-picture-button {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-image: url('/images/close_btn.svg');
+  background-size: cover;
+  width: 20px;
+  height: 19.39px;
+  border: 0;
+}

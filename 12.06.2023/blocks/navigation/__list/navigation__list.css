@@ -1,0 +1,14 @@
+.navigation__list {
+  display: flex;
+  list-style-type: none;
+  margin: 0 -9px;
+  /*Чтобы крайние элементы не получали лишний отступ*/
+  padding: 0;
+}
+
+@media screen and (max-width: 568px){
+  .navigation__list {
+    flex-direction: column;
+    margin: -16px 0;
+  }
+}

@@ -1,0 +1,11 @@
+.popup__show-picture-button {
+  font-family: "Inter", Arial, sans-serif;
+  color: black;
+  font-size: 16px;
+  text-decoration: underline;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 28px;
+}
