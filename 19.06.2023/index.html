@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Валидация форм</title>
+  </head>
+  <body>
+    <style>
+      .form__field_invalid {
+        border: 1px solid red;
+      }
+
+      /* input:not(:placeholder-shown) {
+        border: 5px dashed darkblue;
+      } */
+    </style>
+
+    <form class="form" novalidate>
+      <p class="form__field">
+        <input
+          type="email"
+          placeholder="Email"
+          minlength="6"
+          class="form__input"
+        />
+        <span class="form__error"></span>
+      </p>
+      <br />
+      <p class="form__field">
+        <input
+          type="tel"
+          placeholder="+7-913-123-1234"
+          class="form__input"
+          pattern="\+7-[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        />
+        <span class="form__error"></span>
+      </p>
+      <br />
+
+      <p class="form__field">
+        <input
+          min="40"
+          max="80"
+          type="number"
+          placeholder="Age"
+          class="form__input"
+          required
+          step="10"
+        />
+        <span class="form__error"></span>
+      </p>
+
+      <br />
+
+      <p class="form__field">
+        <input
+          min="40"
+          max="45"
+          type="range"
+          placeholder="Age"
+          class="form__input"
+        />
+        <span class="form__error"></span>
+      </p>
+
+      <br />
+      <p class="form__field">
+        <input
+          min="40"
+          max="45"
+          type="url"
+          placeholder="URL"
+          class="form__input"
+        />
+        <span class="form__error"></span>
+      </p>
+
+      <br />
+
+      <button type="submit" class="form__submit">Submit</button>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>
