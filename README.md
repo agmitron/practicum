@@ -13,3 +13,4 @@
 - [19.06.2023. Валидация](https://github.com/agmitron/praktikum/tree/master/19.06.2023)
 - [19.07.2023. ООП на практике](https://github.com/agmitron/praktikum/tree/master/19.07.2023)
 - [01.08.2023. Vue.js](https://github.com/agmitron/praktikum/tree/master/01.08.2023)
+- [07.08.2023. MobX](https://github.com/agmitron/praktikum/tree/master/07.08.2023)
