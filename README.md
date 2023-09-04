@@ -15,3 +15,4 @@
 - [01.08.2023. Vue.js](https://github.com/agmitron/praktikum/tree/master/01.08.2023)
 - [07.08.2023. MobX](https://github.com/agmitron/praktikum/tree/master/07.08.2023)
 - [30.08.2023. Q&A](https://github.com/agmitron/praktikum/tree/master/30.08.2023)
+- [04.09.2023. TypeScript](https://github.com/agmitron/praktikum/tree/master/04.09.2023)
