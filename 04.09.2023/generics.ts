@@ -1,3 +1,15 @@
+type Values = number | boolean
+
+const myMap = new Map()
+
+
+
+
+let a = 1
+
+myMap.get("foo")
+myMap.set("bar", 1)
+
 interface ResponseFromServer<Data> {
   error: string;
   data: Data;
