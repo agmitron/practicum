@@ -1,0 +1,5 @@
+.popup__send-error {
+    margin-top: 10px;
+    color: #f00;
+    display: block;
+}

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>H O M E --- Shallow Render REACT COMPONENTS +++ render the DUMB snap 1`] = `
+<Popup
+  contentClass="popup__content_content_image"
+  isOpen={true}
+  onClose={[MockFunction]}
+  popupClass="popup_type_image"
+>
+  <img
+    alt="Deer"
+    className="popup__image"
+    src="https://cat.photo"
+  />
+  <p
+    className="popup__caption"
+  >
+    Deer
+  </p>
+</Popup>
+`;

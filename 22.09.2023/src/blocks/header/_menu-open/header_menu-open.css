@@ -1,0 +1,17 @@
+.header_menu-open .header__wrapper {
+  display: flex;
+}
+
+.header_menu-open .header__burger {
+  width: 30px;
+  height: 30px;
+  background: transparent url('../../../images/close.svg') center no-repeat;
+  background-size: 30px 30px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 10px;
+  bottom: 25px;
+}

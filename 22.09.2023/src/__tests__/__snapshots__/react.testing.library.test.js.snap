@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should be equal to snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="header page__section 
+          
+         "
+  >
+    <a
+      class="header__auth-link"
+      href="/"
+    >
+      <img
+        alt="Логотип проекта Mesto"
+        class="logo header__logo"
+        src="logo.svg"
+      />
+    </a>
+    <a
+      class="header__auth-link"
+      data-testid="link-signin-element"
+      href="/signup"
+    >
+      Регистрация
+    </a>
+  </header>
+</DocumentFragment>
+`;

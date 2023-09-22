@@ -1,0 +1,31 @@
+.header__wrapper {
+  display: flex;
+}
+
+@media screen and (max-width: 480px) {
+  .header__wrapper {
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    display: none;
+  }
+
+  .header__wrapper::before {
+    content: '';
+    width: calc(100% + 40px);
+    height: 1px;
+    opacity: 0.7;
+    background: #545454;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+}

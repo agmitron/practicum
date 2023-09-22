@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check Card component should be equal to snapshot 1`] = `
+<li
+  className="places__item card"
+>
+  <div
+    className="card__image"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://images.unsplash.com/)",
+      }
+    }
+  />
+  <button
+    className="card__delete-button card__delete-button_hidden"
+    onClick={[Function]}
+    type="button"
+  />
+  <div
+    className="card__description"
+  >
+    <h2
+      className="card__title"
+    >
+      Deer
+    </h2>
+    <div
+      className="card__likes"
+    >
+      <button
+        className="card__like-button false"
+        onClick={[Function]}
+        type="button"
+      />
+      <p
+        className="card__like-count"
+      >
+        0
+      </p>
+    </div>
+  </div>
+</li>
+`;
